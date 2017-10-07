@@ -13,4 +13,12 @@ public class WaistChange : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	public void materialUp(){
+
+	}
+
+	public void materialDown(){
+
+	}
 }
