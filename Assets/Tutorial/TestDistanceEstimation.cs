@@ -6,6 +6,7 @@ public class TestDistanceEstimation : MonoBehaviour {
 	public GameObject a;
 	public GameObject b;
     public GameObject c;
+    public GameObject mid;
 	// Use this for initialization
 	void Start () {
 
@@ -13,6 +14,31 @@ public class TestDistanceEstimation : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        if (a == null || b == null || mid == null) {
+            return;
+        }
+        Vector3 delta = a.transform.position - b.transform.position;
+        Vector3 midPosition = b.transform.position + delta * 0.5f;
+        mid.transform.position = midPosition;
+
+        Sprite sprite = mid.GetComponent<SpriteRenderer>().sprite;
+
+        Vector3 topLeft = midPosition + sprite.bounds.min;
+        Vector3 bottomRight = midPosition + sprite.bounds.max;
+
+        Vector3 desiredLeft = a.transform.position;
+        Vector3 desiredRight = b.transform.position;
+
+        float desiredLength = (desiredRight-desiredLeft).magnitude;
+        float originalLength = sprite.bounds.max.x - sprite.bounds.min.x;
+        Debug.Log(desiredLength);
+        Debug.Log(originalLength);
+        mid.transform.localScale =
+            new Vector3(
+                desiredLength/originalLength,
+                desiredLength/originalLength,
+                1
+            );
 	}
     void V3 (string label, Vector3 v) {
         GUILayout.Button(
