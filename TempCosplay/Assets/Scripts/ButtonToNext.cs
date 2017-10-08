@@ -33,17 +33,24 @@ public class ButtonToNext : MonoBehaviour {
 
 	public void NextPage(){
 		//Debug.Log ("next page happening");
-		Vector2 point = Input.GetTouch(0).position;
+		//Vector2 point = Input.GetTouch(0).position;
 		//Touch t1 = Input.GetTouch (0);
+		Vector3 point = Input.mousePosition;
 		Debug.Log (point);
-		if (place == pages.Length) {
-			place = 0;
-			//SceneManager.LoadScene ("Sizing - Copy");
-		}
-		else {
-			curPage.sprite = Sprite.Create (pages [place], size, tilt);
+		if (point.y < 80)
+			SceneManager.LoadScene ("Sizing - Copy");
+		else if (point.x > 114) {
 			place++;
+			if (place == pages.Length)
+				place = 0;
+		} else {
+			place--;
+			if (place == -1)
+				place = pages.Length - 1;
 		}
+			
+		curPage.sprite = Sprite.Create (pages [place], size, tilt);
+
 
 	}
 		}
