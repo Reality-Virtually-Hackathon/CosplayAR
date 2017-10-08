@@ -25,17 +25,61 @@ public class TestDistanceEstimation : MonoBehaviour {
         return (a + b)/2;
     }
 
+    private Vector3 aPos = Vector3.zero;
+    private Vector3 bPos = Vector3.zero;
+    private Vector3 cPos = Vector3.zero;
+
 	// Update is called once per frame
 	void LateUpdate () {
         /*if (a == null || b == null || c == null || mid == null) {
             return;
         }*/
-        /*
-                TrackableBehaviour.Status aStatus = a.GetComponent<TrackableBehaviour>().CurrentStatus;
-                TrackableBehaviour.Status bStatus = b.GetComponent<TrackableBehaviour>().CurrentStatus;
-                TrackableBehaviour.Status cStatus = c.GetComponent<TrackableBehaviour>().CurrentStatus;
-                TrackableBehaviour.Status dStatus = d.GetComponent<TrackableBehaviour>().CurrentStatus;
-                */
+        
+        TrackableBehaviour.Status aStatus = (a != null && a.transform.parent.GetComponent<TrackableBehaviour>() != null) ? a.transform.parent.GetComponent<TrackableBehaviour>().CurrentStatus : TrackableBehaviour.Status.UNDEFINED;
+        TrackableBehaviour.Status bStatus = (b != null && b.transform.parent.GetComponent<TrackableBehaviour>() != null) ? b.transform.parent.GetComponent<TrackableBehaviour>().CurrentStatus : TrackableBehaviour.Status.UNDEFINED;
+        TrackableBehaviour.Status cStatus = (c != null && c.transform.parent.GetComponent<TrackableBehaviour>() != null) ? c.transform.parent.GetComponent<TrackableBehaviour>().CurrentStatus : TrackableBehaviour.Status.UNDEFINED;
+
+        Vector3 curAPos = Vector3.zero;
+        Vector3 curBPos = Vector3.zero;
+        Vector3 curCPos = Vector3.zero;
+        if (a != null && a.transform != null)
+        {
+            if (aStatus == TrackableBehaviour.Status.TRACKED)
+            {
+                aPos = a.transform.position;
+                curAPos = a.transform.position;
+            }
+            else
+            {
+                curAPos = aPos;
+            }
+        }
+
+        if (b != null && b.transform != null)
+        {
+            if (bStatus == TrackableBehaviour.Status.TRACKED)
+            {
+                bPos = b.transform.position;
+                curBPos = b.transform.position;
+            }
+            else
+            {
+                curBPos = bPos;
+            }
+        }
+
+        if (c != null && c.transform != null)
+        {
+            if (cStatus == TrackableBehaviour.Status.TRACKED)
+            {
+                cPos = c.transform.position;
+                curCPos = c.transform.position;
+            }
+            else
+            {
+                curCPos = cPos;
+            }
+        }
         /*
                 Vector3 aPosition = a.transform.position;
                 Vector3 bPosition = b.transform.position;
@@ -58,9 +102,9 @@ public class TestDistanceEstimation : MonoBehaviour {
         //Vector3 midPosition = total/3;
         mid.transform.position = midPosition;*/
 
-        float totalX = a.transform.position.x + b.transform.position.x;
-        float totalY = a.transform.position.y;// + b.transform.position.y + c.transform.position.z;
-        float totalZ = a.transform.position.z + c.transform.position.z;
+        float totalX = curAPos.x + curBPos.x;
+        float totalY = curAPos.y;// + b.transform.position.y + c.transform.position.z;
+        float totalZ = curAPos.z + curCPos.z;
         Vector3 midPosition = new Vector3(
             totalX / 2,
             totalY / 1,//3,
@@ -72,8 +116,15 @@ public class TestDistanceEstimation : MonoBehaviour {
 
         Sprite sprite = mid.GetComponent<SpriteRenderer>().sprite;
 
-
-        float desiredLength = (a.transform.position-b.transform.position).magnitude;
+        Vector2 a2dPos = new Vector2(
+            curAPos.x,
+            curAPos.z    
+        );
+        Vector2 b2dPos = new Vector2(
+            curBPos.x,
+            curBPos.z
+        );
+        float desiredLength = (a2dPos - b2dPos).magnitude;
         float originalLength = sprite.bounds.max.x - sprite.bounds.min.x;
         mid.transform.localScale = new Vector3(
             desiredLength/originalLength,
@@ -81,7 +132,7 @@ public class TestDistanceEstimation : MonoBehaviour {
             1
         );
 
-        Vector3 normal = GetNormal(a.transform.position, b.transform.position, c.transform.position);
+        Vector3 normal = GetNormal(curAPos, curBPos, curCPos);
         Vector3 lookAt = midPosition + normal * 10;
 
         mid.transform.localEulerAngles = new Vector3(90, 0, 0);
@@ -103,8 +154,8 @@ public class TestDistanceEstimation : MonoBehaviour {
 
         float theta = Mathf.Atan2(
             
-            a.transform.position.z - b.transform.position.z,
-            a.transform.position.x - b.transform.position.x
+            curAPos.z - curBPos.z,
+            curAPos.x - curBPos.x
         ) * Mathf.Rad2Deg;
 
         //mid.transform.Rotate(new Vector3(0, 0, -theta - 90), Space.Self);
@@ -127,7 +178,7 @@ public class TestDistanceEstimation : MonoBehaviour {
         return Vector3.Cross(side1, side2).normalized;
     }
     void OnDrawGizmos () {
-        Vector3 total = a.transform.position + b.transform.position + c.transform.position;
+        /*Vector3 total = a.transform.position + b.transform.position + c.transform.position;
         Vector3 midPosition = total/3;
 
         Sprite sprite = mid.GetComponent<SpriteRenderer>().sprite;
@@ -157,7 +208,7 @@ public class TestDistanceEstimation : MonoBehaviour {
             Mathf.Cos(theta * Mathf.Deg2Rad),
             0,
             Mathf.Sin(theta * Mathf.Deg2Rad)
-        ) * 10);
+        ) * 10);*/
     }
     void V3 (string label, Vector3 v) {
         GUILayout.Button(
@@ -178,10 +229,22 @@ public class TestDistanceEstimation : MonoBehaviour {
         );
     }
 	void OnGUI () {
-        if (a == null || b == null || c == null) {
+        if (a == null)
+        {
+            GUILayout.Button("A IS NULL");
             return;
         }
-		Vector3 delta = a.transform.position - b.transform.position;
+        if (b == null)
+        {
+            GUILayout.Button("B IS NULL");
+            return;
+        }
+        if (c == null)
+        {
+            GUILayout.Button("C IS NULL");
+            return;
+        }
+        Vector3 delta = a.transform.position - b.transform.position;
 		GUILayout.Button("A to B: " + delta.magnitude.ToString());
 
         delta = c.transform.position - b.transform.position;
@@ -202,5 +265,17 @@ public class TestDistanceEstimation : MonoBehaviour {
             a.transform.position.x-b.transform.position.x
         ) * Mathf.Rad2Deg;
         GUILayout.Button("Theta: " + theta.ToString());
-	}
+
+        TrackableBehaviour.Status aStatus = (a != null && a.transform.parent.GetComponent<ImageTargetBehaviour>() != null) ? a.transform.parent.GetComponent<ImageTargetBehaviour>().CurrentStatus : TrackableBehaviour.Status.UNDEFINED;
+        TrackableBehaviour.Status bStatus = (b != null && b.transform.parent.GetComponent<TrackableBehaviour>() != null) ? b.transform.parent.GetComponent<TrackableBehaviour>().CurrentStatus : TrackableBehaviour.Status.UNDEFINED;
+        TrackableBehaviour.Status cStatus = (c != null && c.transform.parent.GetComponent<TrackableBehaviour>() != null) ? c.transform.parent.GetComponent<TrackableBehaviour>().CurrentStatus : TrackableBehaviour.Status.UNDEFINED;
+
+        GUILayout.Button("a exists: " + (a != null));
+        GUILayout.Button("a has parent: " + (a.transform.parent != null));
+        GUILayout.Button("a parent name: " + (a.transform.parent.name));
+        GUILayout.Button("a has trackable: " + (a.transform.parent.GetComponent<ImageTargetBehaviour>() != null));
+        GUILayout.Button("a status: " + (a.transform.parent.GetComponent<ImageTargetBehaviour>().CurrentStatus));
+        GUILayout.Button("b tracking: " + (bStatus.ToString()));
+        GUILayout.Button("c tracking: " + (cStatus.ToString()));
+    }
 }
