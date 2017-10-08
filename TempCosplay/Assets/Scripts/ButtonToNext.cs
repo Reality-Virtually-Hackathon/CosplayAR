@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
-public class PageChanger : MonoBehaviour {
+public class ButtonToNext : MonoBehaviour {
 	Texture2D[] pages;
 	int place;
 
