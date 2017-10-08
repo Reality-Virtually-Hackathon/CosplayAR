@@ -6,5 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Tutorial/Selection.unity
+    guid: f5359da63122b4245b834b4ea7686af2
+  - enabled: 1
+    path: Assets/Tutorial/Sizing - Copy.unity
+    guid: c056ceebc0b8c294fb0a3e33975f64d1
+  - enabled: 1
     path: Assets/Tutorial/MainTutorialScene.unity
     guid: 01639fb0d0fef4869832d261102e02bc

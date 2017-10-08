@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TempCosplay", "Assembly-CSharp.csproj", "{52FBEC98-17F3-F746-0D85-0FC57CFA8496}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TempCosplay", "Assembly-CSharp-Editor.csproj", "{33766888-2D08-F701-817D-14330728DC26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{52FBEC98-17F3-F746-0D85-0FC57CFA8496}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52FBEC98-17F3-F746-0D85-0FC57CFA8496}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52FBEC98-17F3-F746-0D85-0FC57CFA8496}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33766888-2D08-F701-817D-14330728DC26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33766888-2D08-F701-817D-14330728DC26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33766888-2D08-F701-817D-14330728DC26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33766888-2D08-F701-817D-14330728DC26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
