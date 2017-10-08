@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 
 
 public class PageChanger : MonoBehaviour {
@@ -30,6 +31,8 @@ public class PageChanger : MonoBehaviour {
 	void FixedUpdate () {
 		if (Input.GetMouseButtonDown (0)) 
 			NextPage ();
+		XRSettings.enabled = false;
+		Screen.orientation = ScreenOrientation.Portrait;
 	}
 
 	public void NextPage(){

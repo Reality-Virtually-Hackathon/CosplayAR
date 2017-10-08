@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 
 public class ButtonToNext : MonoBehaviour {
 	Texture2D[] pages;
@@ -15,6 +16,7 @@ public class ButtonToNext : MonoBehaviour {
 	public Image curPage;
 	// Use this for initialization
 	void Start(){
+		
 		place = 0;
 		object[] pageHolder = (Resources.LoadAll ("SelectionPages"));
 		pages = new Texture2D[pageHolder.Length];
@@ -29,6 +31,8 @@ public class ButtonToNext : MonoBehaviour {
 	void FixedUpdate () {
 		if (Input.GetMouseButtonDown (0)) 
 			NextPage ();
+		XRSettings.enabled = false;
+		Screen.orientation = ScreenOrientation.Portrait;
 	}
 
 	public void NextPage(){
