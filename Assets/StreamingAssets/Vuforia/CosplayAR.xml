@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="FullSizeRender4" size="1.000000 0.992119" />
+    <ImageTarget name="FullSizeRender3" size="1.000000 1.004189" />
+    <ImageTarget name="FullSizeRender2" size="1.000000 0.996154" />
+    <ImageTarget name="FullSizeRende" size="1.000000 0.986690" />
+    <ImageTarget name="FullSizeRender" size="1.000000 0.988122" />
     <ImageTarget name="MERGECUBE-00" size="1.000000 1.071405" />
     <ImageTarget name="maze" size="1.000000 1.003236" />
     <ImageTarget name="Marker-00" size="1.000000 1.000000" />
