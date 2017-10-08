@@ -35,7 +35,7 @@ public class PageChanger : MonoBehaviour {
 	public void NextPage(){
 		Debug.Log ("next page happening");
 		if (place == pages.Length)
-			SceneManager.LoadScene ("Button");
+			SceneManager.LoadScene ("MainTutorialScene");
 		else {
 			curPage.sprite = Sprite.Create (pages [place], size, tilt);
 			place++;
