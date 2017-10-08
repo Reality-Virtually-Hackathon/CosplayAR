@@ -16,7 +16,7 @@ public class ButtonToNext : MonoBehaviour {
 	// Use this for initialization
 	void Start(){
 		place = 0;
-		object[] pageHolder = (Resources.LoadAll ("SizingPages"));
+		object[] pageHolder = (Resources.LoadAll ("SelectionPages"));
 		pages = new Texture2D[pageHolder.Length];
 		for(int i = 0; i<pageHolder.Length; i++) {
 			pages[i] = (Texture2D)(pageHolder[i]);
@@ -32,13 +32,18 @@ public class ButtonToNext : MonoBehaviour {
 	}
 
 	public void NextPage(){
-		Debug.Log ("next page happening");
-		if (place == pages.Length)
-			SceneManager.LoadScene ("Button");
+		//Debug.Log ("next page happening");
+		Vector2 point = Input.GetTouch(0).position;
+		//Touch t1 = Input.GetTouch (0);
+		Debug.Log (point);
+		if (place == pages.Length) {
+			place = 0;
+			//SceneManager.LoadScene ("Sizing - Copy");
+		}
 		else {
 			curPage.sprite = Sprite.Create (pages [place], size, tilt);
 			place++;
 		}
 
 	}
-}
+		}
