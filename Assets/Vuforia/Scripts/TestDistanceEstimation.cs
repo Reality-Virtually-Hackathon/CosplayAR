@@ -155,6 +155,7 @@ public class TestDistanceEstimation : MonoBehaviour {
         V3("A", a.transform.position);
         V3("B", b.transform.position);
         V3("C", c.transform.position);
+		V3("Mid", c.transform.position);
 
         V3("Mid Rotation", mid.transform.localEulerAngles);
 
