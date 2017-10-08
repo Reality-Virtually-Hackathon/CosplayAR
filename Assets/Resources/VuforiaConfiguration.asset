@@ -8,27 +8,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d76b89ff4afc5a04195eab54bc63d331, type: 3}
+  m_Script: {fileID: -2067402452, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
     vuforiaLicenseKey: AVCsanz/////AAAAGWkA27ID+UwijH1W1ReCfrYMtA4+KW8Nc+9dd2Tf4yCamnMr9rWx69lsofBaTmL7tyRlg/s3f2vjATciqRADAxLzASRggNZ3h5FB+bn0NXwRu2Bl+yLcF3dNTKEmR3tkWMp7sM2qIMZQVResm9filjENYNle6LoEsA7ZQNC9C+ymNEunAZTqPAhvOpBaVKFmJjM6E67yW9RwyXQs1oIwvip8daZxzEeTe95PvJdXo4U9n1ZANLAgqdC/3mF6DSoWyJBy6qSHC6o39tUhW0T+IURbN2uUra1RKYPMqXCaBHY8OHBaZldEa/R2gvS1W8qlQbeYXVGqXtvgee7BW3OC8yisjxlLyPvKhGgKF0uX8B7z
+    ufoLicenseKey: QVVNTEpGdi8vLy8vQUFBQUtETmwxYzYwM1VNM2p2RlcvdGxHdlRnN1B2Yk5pcHJqMGVVZDZLYTZmRkFWeU9ZTEIrQW1NWTZvY3l5YTNZL09CWFhrbU0rRldabzZwZmVJOFVZSG9MVytSSGc3K0JqbFhuOERlTEFGdDJqZlM0d2ttbkJGLzFUQ1l4YjVaOVNVVXZNVEVQNURjN2NzY0pkVUlGSng1aDhqSjRTV3pCc05yWWNoYmZBT0xQSERXUnEvRFJFeDhHRzI5ZUliRjdNR29DbVdxK1Y0cHVraDNjcnQ5K0FGdE1FQkNINjhaek9kUHh3MHByVWQycE9LSExmN0pyZ01UMTdNdWE4TUNqRmtPczBuMkZaa3lYbEcycDZLWldaRnp5bE5TR1FJQXh3aStQdWREY0R3TkNtY1Rod0NHYXl0VTJTaUFsc3B4VS8wZ3ZzY0NrU3U0OW01YUprSVdDc2ZwNzRBZncyNTk2T2ZOTVBQTTYyVFBhSzc=
     delayedInitialization: 0
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 10
+    maxSimultaneousImageTargets: 4
     maxSimultaneousObjectTargets: 1
     useDelayedLoadingObjectTargets: 0
     cameraDirection: 0
     mirrorVideoBackground: 0
   digitalEyewear:
     cameraOffset: 0.06
-    distortionRenderingMode: 2
     distortionRenderingLayer: 31
-    eyewearType: 0
+    eyewearType: 2
     stereoFramework: 0
     seeThroughConfiguration: 0
-    viewerName: 
-    viewerManufacturer: 
+    viewerName: VR Goggles
+    viewerManufacturer: Merge
     useCustomViewer: 0
     customViewer:
       Version: 0
@@ -49,18 +49,22 @@ MonoBehaviour:
     - CosplayAR
   videoBackground:
     clippingMode: 0
-    matteShader: {fileID: 4800000, guid: f84e93cca971cda47a225f4c6a4156c9, type: 3}
+    numDivisions: 2
+    videoBackgroundShader: {fileID: 15311, guid: 0000000000000000f000000000000000,
+      type: 0}
+    matteShader: {fileID: 15310, guid: 0000000000000000f000000000000000, type: 0}
     videoBackgroundEnabled: 1
   smartTerrainTracker:
     autoInitTracker: 0
     autoStartTracker: 0
     autoInitBuilder: 0
-    sceneUnitsToMillimeter: 200
+    sceneUnitsToMillimeter: 0
   deviceTracker:
-    autoInitTracker: 0
-    autoStartTracker: 0
+    autoInitTracker: 1
+    autoStartTracker: 1
+    trackingMode: 0
     posePrediction: 0
-    modelCorrectionMode: 0
+    modelCorrectionMode: 1
     modelTransformEnabled: 0
     modelTransform: {x: 0, y: 0.1, z: -0.1}
   webcam:
